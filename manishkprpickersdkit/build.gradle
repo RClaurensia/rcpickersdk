@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.manishkpr'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '28.0.2'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+
+repositories {
+    maven { url "https://s3.amazonaws.com/repo.commonsware.com" }
+}
+
+
+dependencies {
+
+    final SUPPORT                   =  "26.1.0";
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
+
+    implementation 'com.wonderkiln:camerakit:0.11.1'
+//    implementation 'com.flurgle:camerakit:0.9.18'
+
+    //noinspection GradleCompatible
+    implementation "com.android.support:appcompat-v7:$SUPPORT"
+    implementation "com.android.support:design:$SUPPORT"
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.commonsware.cwac:camera:0.6.+'
+
+    testImplementation 'junit:junit:4.12'
+
+//    implementation 'com.github.bumptech.glide:glide:4.7.1'
+}

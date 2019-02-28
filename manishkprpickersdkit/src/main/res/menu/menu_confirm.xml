@@ -1,0 +1,24 @@
+<!--
+  ~ Copyright (c) 2016. Ted Park. All Rights Reserved
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <item
+        android:visible="false"
+        android:id="@+id/action_done"
+        android:title="Confirm"
+        app:showAsAction="always"/>
+
+    <item
+        android:visible="false"
+        android:id="@+id/action_reset"
+        android:icon="@drawable/ic_close_white_24dp"
+        android:title="@string/reset"
+        app:showAsAction="always"/>
+
+
+</menu>

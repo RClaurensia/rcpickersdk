@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '28.0.2'
+
+    defaultConfig {
+        applicationId "com.manishkprpickersdk"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+repositories {
+
+    maven { url "https://repo.commonsware.com.s3.amazonaws.com" }
+
+    maven {
+        url "https://s3.amazonaws.com/repo.commonsware.com"
+    }
+
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
+
+dependencies {
+    final PERMISSIONSDISPATCHER       =  "2.3.2";
+    final LEAK_CANARY               =  "1.5";
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    testImplementation 'junit:junit:4.12'
+
+    implementation project(':manishkprpickersdkit')
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$LEAK_CANARY"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$LEAK_CANARY"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$LEAK_CANARY"
+
+    implementation "com.github.hotchemi:permissionsdispatcher:$PERMISSIONSDISPATCHER"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$PERMISSIONSDISPATCHER"
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.commonsware.cwac:camera:0.6.+'
+}
